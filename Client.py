@@ -1,5 +1,5 @@
 from tkinter import Y
-from Time import Time
+from Trip import Time
 
 
 def main():
