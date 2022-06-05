@@ -1,4 +1,4 @@
-from Trip import Trip
+from src.Trip import Trip
 from Event import Event
 ## After implementation, we could fill in additional parameters
 def main():
