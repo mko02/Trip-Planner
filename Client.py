@@ -1,12 +1,18 @@
-from tkinter import Y
-from Trip import Time
-
-
+from Trip import Trip
+from Event import Event
+## After implementation, we could fill in additional parameters
 def main():
-    t = Time(11, 20, 12, 30)
-    print(t.getDate())
-    t.date = t.date + 1
-    print(t.getDate())
+    trip = Trip()
+    trip.addMember()
+    trip.addEvent()
+    trip.addEvent()
+    event = trip.getEvent()
+    ## getEvent not yet implemented so event manipulation is not allowed yet
+    # event.getTime()....
 
-if __name__ == "__main__":
+    ## Cost manager manipulation is to be decided
+
+
+
+if __name__ == "main":
     main()
