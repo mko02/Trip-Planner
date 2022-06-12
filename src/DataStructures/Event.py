@@ -3,7 +3,12 @@
     Allow manipulations on details
 '''
 class Event:
-    def __init__(self):
+    def __init__(self, time, date, label, location, description):
+        self.time = time
+        self.date = date
+        self.label = label
+        self.location = location
+        self.description = description
         raise RuntimeError("Not yet implemented")
 
     '''
