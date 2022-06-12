@@ -1,5 +1,4 @@
-from src.Trip import Trip
-from Event import Event
+from src.DataStructures import Trip, Event
 ## After implementation, we could fill in additional parameters
 def main():
     trip = Trip()
