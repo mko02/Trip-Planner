@@ -15,6 +15,7 @@ class Cost:
         raise RuntimeError("Not yet implemented")
         ## hihi Esther is tryingggg
         ## Esther trying branch
+        ## max
     '''
         Select the payer of this cost
     '''
