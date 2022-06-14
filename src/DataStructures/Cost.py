@@ -11,61 +11,83 @@
     costs information that would be given by the controller.
 '''
 class Cost:
-    def __init__(self):
-        raise RuntimeError("Not yet implemented")
-        ## hihi Esther is tryingggg
-        ## Esther trying branch
-        ## max
-    '''
-        Select the payer of this cost
-    '''
-    def selectPayer():
-        raise RuntimeError("Not yet implemented")
+    ## __expectedCost: a dictionary where (k, v) = (payer, amount they have to pay)
+    __expectedCost = {}
+    ## __actualCost: a tuple where (a, b) = (payer, amount he/she actually paid)
+    __actualCost = ()
+    ## True: paid by evenly split cost
+    ## False: paid by custom split cost
+    __paymentMethod = True
+    __description = ""
+    __tag = ""
 
     '''
-        Select the payees of this cost
+        Construct a new cost per action
+
+
     '''
-    def selectPayee():
-        raise RuntimeError("Not yet implemented")
+    def __init__(self, paymentMethod, actualCost, expectedCost, description="", tag=""):
+        self.__paymentMethod = paymentMethod
+        self.__actualCost = actualCost
+        self.__expectedCost = expectedCost
+
 
     '''
         Calculate the interpersonal debt relationship
     '''
-    def calculateCost():
-        raise RuntimeError("Not yet implemented")
-
-    '''
-        Save the custom split costs with parameters
-    '''
-    def saveCustomCost():
-        raise RuntimeError("Not yet implemented")
-
-    '''
-        Save the evenly split costs with parameters
-    '''
-    def saveSplitCost():
-        raise RuntimeError("Not yet implemented")
+    def calculateCost(self):
+        result = {}
+        payer = self.__actualCost[0]
+        for payee in self.__expectedCost.keys():
+            if (payee != payer):
+                result[payee] = {payer : self.__expectedCost.get(payee)}
+        return result
 
     '''
         Get the tag of this cost event
     '''
-    def getTag():
-        raise RuntimeError("Not yet implemented")
+    def getTag(self):
+        return self.__tag
 
     '''
         Set the tag of this cost event
     '''
-    def setTag():
-        raise RuntimeError("Not yet implemented")
+    def setTag(self, tag):
+        self.__tag = tag
 
     '''
         Get the description of this cost event
     '''
-    def getDescription():
-        raise RuntimeError("Not yet implemented")
+    def getDescription(self):
+        return self.__description
 
     '''
         Set the description of this cost event
     '''
-    def setDescription():
-        raise RuntimeError("Not yet implemented")
+    def setDescription(self, description):
+        self.__description = description
+
+    '''
+        Return the details of the cost in string
+    '''
+    def __str__(self):
+        method = ""
+        if self.__paymentMethod:
+            method = "Evenly Split"
+        else:
+            method = "Custom Split"
+        total = self.__actualCost[1]
+        payer = self.__actualCost[0]
+        payees = ""
+        for payee in self.__expectedCost.keys():
+            if (payee != payer):
+                payees += "\t {payee} should pay {amount} \n".format(payee=payee,
+                    amount=self.__expectedCost.get(payee))
+        string = '''Payment Method: {method} \n
+            Total Cost: {total} \n
+            Payer: {payer}, who paid {amount} \n
+            Payees: \n {payees} \n
+            Description: {description} \n
+            Tag: {tag} \n'''.forma(method=method, total=total, payer=payer, amount=total,
+                payees=payees, description=self.__description, tag=self.__tag)
+        return string
