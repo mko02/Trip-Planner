@@ -2,20 +2,26 @@
     Represent a mutable trip with event manipulation, and a cost manager to
     handle all costs in this trip
 '''
+from CostManager import * 
 class Trip:
-    def __init__():
+    def __init__(self, events, memberids, costmanager):
+        self.events = [] #empty list of events, in which we will append event object later 
+        self.memberids = []
+        self.costmanager = CostManager(self.memberids)
         raise RuntimeError("Not yet implemented")
 
     '''
         Get the list of events that are currently in this trip
     '''
-    def getEventList():
+    def getEventList(self):
+        return self.events
         raise RuntimeError("Not yet implemented")
 
     '''
         Get the list of members that are currently in this trip
     '''
-    def getMemberList():
+    def getMemberList(self):
+        return self.memberids
         raise RuntimeError("Not yet implemented")
 
     '''
