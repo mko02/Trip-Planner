@@ -24,7 +24,7 @@ class Member:
         raise RuntimeError("Not yet implemented")
 
     '''
-        Get the distince color of this member
+        Get the distinct color of this member
     '''
     def getColor():
         raise RuntimeError("Not yet implemented")

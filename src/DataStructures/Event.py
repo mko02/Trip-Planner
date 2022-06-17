@@ -3,8 +3,25 @@
     Allow manipulations on details
 '''
 class Event:
+<<<<<<< Updated upstream
     def __init__(self):
+=======
+    def __init__(self, event_id, time, date, label, location, description):
+        self.id = event_id ## added id for event 
+        self.time = time
+        self.date = date
+        self.label = label
+        self.location = location
+        self.description = description
+>>>>>>> Stashed changes
         raise RuntimeError("Not yet implemented")
+    
+    '''
+        Get id of this event
+    '''
+    def getID(self):
+        return self.id
+        raise RuntimeError("Not yet implimented")
 
     '''
         Get time of this event
