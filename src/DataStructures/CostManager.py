@@ -44,6 +44,7 @@ class CostManager:
             Debtor 2, Payer 1, negative amount: Person 2 pays xxx to    Person 1
             Debtor 1, Payer 2, positive amount: Person 1 gets xxx from Person 2
             
+            
         transaction_sheet : Cost[]
             A record of all transaction (Cost events), used to calculate / update balance sheet
 
