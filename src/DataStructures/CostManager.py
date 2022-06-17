@@ -34,6 +34,15 @@ class CostManager:
                     Payer ID : amount due or owe
                 }
             }
+
+            xxx         Debtor 1    Debtor 2    Debtor 3    <- outer layer
+            Payer 1         0       -amount A   +amount B
+            Payer 2     +amount A        0      -amount C
+            Payer 3     -amount B   +amount C        0
+                ^ inner layer
+
+            Debtor 2, Payer 1, negative amount: Person 2 pays xxx to    Person 1
+            Debtor 1, Payer 2, positive amount: Person 1 gets xxx from Person 2
             
         transaction_sheet : Cost[]
             A record of all transaction (Cost events), used to calculate / update balance sheet
@@ -44,7 +53,7 @@ class CostManager:
             _description_
         """
     
-        raise RuntimeError("Not yet implemented")
+        #raise RuntimeError("Not yet implemented")
 
         balance_sheet = {}
 
@@ -130,7 +139,7 @@ class CostManager:
         ------Additional Note------
         I am wondering if this can be involved in the getBalanceSheet
     '''
-    def calculateResult(self):
+    def calculateResult(self):                                             #need testing
         """ Calculate the results using transaction sheet
             Updates the balance sheet
 
@@ -139,10 +148,30 @@ class CostManager:
         RuntimeError
             _description_
         """
-        raise RuntimeError("Not yet implemented")
+        #raise RuntimeError("Not yet implemented")
+
+        #Assuming calculateCost() returns 
+        # [
+        # Payer ID,
+        # { Debtor1 ID : amount due,
+        # Debtor2 ID : amount due,
+        # Debtor3 ID : amount due, }
+        # ]
+
 
         for cost_event in self.transaction_sheet:                           #use getter?
-            current_cost = cost_event.calculateCost()
+            calculated_cost = cost_event.calculateCost()
+            payerID = calculated_cost[0]
+            debtorDict = calculated_cost[1]
+
+            # subtract from debtor and add to payer
+            for debtorID in debtorDict:
+                self.balance_sheet[debtorID][payerID] -= debtorDict[debtorID]   #use getter?
+                self.balance_sheet[payerID][debtorID] += debtorDict[debtorID]
+
+        
+
+
 
 
     '''
@@ -156,7 +185,7 @@ class CostManager:
         RuntimeError
             _description_
         """
-        raise RuntimeError("Not yet implemented")
+        #raise RuntimeError("Not yet implemented")
 
         new_balance_sheet = {}
 
