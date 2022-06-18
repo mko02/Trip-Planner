@@ -1,5 +1,5 @@
 '''
-    Represent a memeber with name and distinct ID
+    Represent a member with name and distinct ID
 '''
 class Member:
     def __init__(self):

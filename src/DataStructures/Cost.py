@@ -1,41 +1,49 @@
 class Cost:
     """
     Represent a single cost event with two types of split
-        1. Custom split with customized individual cost
-        2. Evenly split with a total cost and number of payees
     Include details like tags, description, ... for this cost event
     """
-    # __expected_cost: a dict where (k, v) = (payer, amount they have to pay)
-    __expected_cost = {}
-    # __actual_cost: a tuple where (a, b) = (payer, amount he/she actually paid)
-    __actual_cost = ()
-    # "Evenly Split" or "Custom Split"
-    __payment_method = ""
-    __description = ""
-    __tag = ""
+    # expected_cost: a dict where (k, v) = (payer, amount they have to pay)
+    expected_cost = {}
+    # actual_cost: a tuple where (a, b) = (payer, amount he/she actually paid)
+    actual_cost = ()
+    payer_id = ""
+    description = ""
+    tag = ""
 
-    def __init__(self, payment_method, actual_cost, expected_cost, description="", tag=""):
+    def __init__(self, payer_id, actual_cost, expected_cost, description="", tag=""):
         """
-        Construct a new cost per action
+        Construct a new cost per action with given parameters
 
         Parameters
         ----------
-        payment_method : str
-            The payment method in a string of "Evenly Split" or "Custom Split"
-        actual_cost : tuple
-            A tuple where (elt_0, elt_1) = (payer, amount the payer paid)
+        payer_id : str
+            The payer's ID of this cost event
+        actual_cost : int
+            The amount the payer paid
         expected_cost : dict
-            A dict where (k, v) = (payer, amount they have to pay)
+            A dict where (k, v) = (debtors' id, amount they have to pay)
         description : str
             The description of this cost (default: empty string)
         tag : str
             The tag of this cost (default: empty string)
         """
-        self.__payment_method = payment_method
-        self.__actual_cost = actual_cost
-        self.__expected_cost = expected_cost
-        self.__description = description
-        self.__tag = tag
+        self.payer_id = payer_id
+        self.actual_cost = actual_cost
+        self.expected_cost = expected_cost
+        self.description = description
+        self.tag = tag
+
+    def get_payer(self):
+        """
+        Return the payer's id
+
+        Returns
+        -------
+        str
+            The payer's id
+        """
+        return self.payer_id
 
     def calculate_cost(self):
         """
@@ -45,19 +53,13 @@ class Cost:
         Returns
         -------
         dict
-            Represented as (k, v) = (Every payee in this cost, Another dict_2)
-            dict_2 represents (k, v) = (Every person that the payee owes money,
-                The amount he/she owes the person(k))
-            Example:
-                {A : {B : 200, C : 200}, B : {C : 100}}
-                A has to pay B 200 dollars, and C 200 dollars
-                B has to pay C 100 dollars
+            (k, v) = (Every debtor in this cost, The amount they have to pay the payer)
+            Amounts are kept positive
         """
         result = {}
-        payer = self.__actual_cost[0]
-        for payee in self.__expected_cost.keys():
-            if payee != payer:
-                result[payee] = {payer: self.__expected_cost.get(payee)}
+        for payee_id in self.expected_cost.keys():
+            if payee_id != self.payer_id:
+                result[payee_id] = self.expected_cost.get(payee_id)
         return result
 
     def get_tag(self):
@@ -69,7 +71,7 @@ class Cost:
         str
             The tag of this cost
         """
-        return self.__tag
+        return self.tag
 
     def set_tag(self, tag):
         """
@@ -80,7 +82,7 @@ class Cost:
         tag : str
             The tag being set to this cost
         """
-        self.__tag = tag
+        self.tag = tag
 
     def get_description(self):
         """
@@ -91,7 +93,7 @@ class Cost:
         str
             The description of this cost event
         """
-        return self.__description
+        return self.description
 
     def set_description(self, description):
         """
@@ -102,7 +104,7 @@ class Cost:
         description : str
             The description being set to this cost event
         """
-        self.__description = description
+        self.description = description
 
     def __str__(self):
         """
@@ -113,22 +115,17 @@ class Cost:
         str
             The details of this cost event
         """
-        if self.__payment_method:
-            method = "Evenly Split"
-        else:
-            method = "Custom Split"
-        total = self.__actual_cost[1]
-        payer = self.__actual_cost[0]
+        total = self.actual_cost
+        payer = self.payer_id
         payees = ""
-        for payee in self.__expected_cost.keys():
+        for payee in self.expected_cost.keys():
             payees += "\t \t \t {payee} should pay {amount} \n".format(payee=payee,
-                                                                       amount=self.__expected_cost.get(payee))
+                                                                       amount=self.expected_cost.get(payee))
         string = '''
-        Payment Method: {method}
         Total Cost: {total}
         Payer: {payer}, who paid {amount}
         Payees: \n {payees}
         Description: {description}
-        Tag: {tag} \n'''.format(method=method, total=total, payer=payer, amount=total,
-                                payees=payees, description=self.__description, tag=self.__tag)
+        Tag: {tag} \n'''.format(total=total, payer=payer, amount=total,
+                                payees=payees, description=self.description, tag=self.tag)
         return string
