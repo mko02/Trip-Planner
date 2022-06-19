@@ -3,6 +3,7 @@
     Allow manipulations on details
 '''
 class Event:
+
     def __init__(self, time, date, label, location, description):
         self.time = time
         self.date = date
@@ -10,6 +11,13 @@ class Event:
         self.location = location
         self.description = description
         raise RuntimeError("Not yet implemented")
+    
+    '''
+        Get id of this event
+    '''
+    def getID(self):
+        return self.id
+        raise RuntimeError("Not yet implimented")
 
     '''
         Get time of this event
