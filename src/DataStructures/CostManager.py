@@ -152,12 +152,15 @@ class CostManager:
         #raise RuntimeError("Not yet implemented")
 
         #Assuming calculateCost() returns 
-        # [
-        # Payer ID,
+
+        # dictionary, i can just access 
+        # return amount will be positive
+
+        # 
         # { Debtor1 ID : amount due,
         # Debtor2 ID : amount due,
         # Debtor3 ID : amount due, }
-        # ]
+        # 
 
 
         for cost_event in self.transaction_sheet:                           #use getter?
@@ -169,10 +172,6 @@ class CostManager:
             for debtorID in debtorDict:
                 self.balance_sheet[debtorID][payerID] -= debtorDict[debtorID]   #use getter?
                 self.balance_sheet[payerID][debtorID] += debtorDict[debtorID]
-
-        
-
-
 
 
     '''
@@ -200,3 +199,13 @@ class CostManager:
 
         self.balance_sheet = new_balance_sheet
         
+    def printBalance(self):
+        """ Print out balance sheet
+
+        Raises
+        ------
+        RuntimeError
+            _description_
+        """
+        raise RuntimeError("Not yet implemented")
+
