@@ -1,49 +1,60 @@
 '''
-    Represent a memeber with name and distinct ID
+    Represent a member with name and distinct ID
 '''
 class Member:
-    def __init__(self):
+    def __init__(self, id, name, balance, color):
+        self.id = id 
+        self.name = name
+        self.balance  = balance
+        self.color = color
         raise RuntimeError("Not yet implemented")
 
     '''
         Get the ID of this member
     '''
-    def getID():
+    def getID(self):
+        return self.id
         raise RuntimeError("Not yet implemented")
 
     '''
         Get the name of this member
     '''
-    def getName():
+    def getName(self):
+        return self.name
         raise RuntimeError("Not yet implemented")
 
     '''
         Get the balance of this member
     '''
-    def getBalance():
+    def getBalance(self):
+        return self.balance
         raise RuntimeError("Not yet implemented")
 
     '''
         Get the distinct color of this member
     '''
-    def getColor():
+    def getColor(self):
+        return self.color
         raise RuntimeError("Not yet implemented")
 
     '''
         Set the balance of this member
     '''
-    def setBalance():
+    def setBalance(self, newBalance):
+        self.balance = newBalance
         raise RuntimeError("Not yet implemented")
 
     '''
         Set the name of this member
     '''
-    def setName():
+    def setName(self,newName):
+        self.name = newName
         raise RuntimeError("Not yet implemented")
 
     '''
         Set the color of this member
     '''
-    def setColor():
+    def setColor(self, newColor):
+        self.color = newColor
         raise RuntimeError("Not yet implemented")
 

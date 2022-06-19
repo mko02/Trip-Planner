@@ -2,51 +2,43 @@
     Represent a mutable trip with event manipulation, and a cost manager to
     handle all costs in this trip
 '''
-<<<<<<< Updated upstream
-class Trip:
-    def __init__():
-=======
+
 from CostManager import * 
 from Event import *
 from Member import * 
-## comments by Esther
 
 class Trip:
-
-    def __init__(self, events, memberids, costmanager): 
-        self.events = [] # empty list of events, in which we will append event object later 
-        self.memberids = [] ## list of integers or member objects 
+    def __init__(self, events, memberids, costmanager):
+        self.events = [] #empty list of events, in which we will append event object later 
+        self.memberids = []
         self.costmanager = CostManager(self.memberids)
-        ## dictionary of member_ids <-> member objects 
-        ## dictionary of event_ids <-> event objects 
->>>>>>> Stashed changes
         raise RuntimeError("Not yet implemented")
 
     '''
         Get the list of events that are currently in this trip
     '''
-    def getEventList():
+    def getEventList(self):
+        return self.events
         raise RuntimeError("Not yet implemented")
 
     '''
         Get the list of members that are currently in this trip
     '''
-    def getMemberList():
+    def getMemberList(self):
+        return self.memberids
         raise RuntimeError("Not yet implemented")
 
     '''
         Get an event specifically by a tag
         Could be overloaded or just one kind of tag(e.g. name, ID, ...)
     '''
-    def getEvent():
+    def getEvent(self):
         raise RuntimeError("Not yet implemented")
 
     '''
         Get a member specifically by a name or ID
     '''
-<<<<<<< Updated upstream
-    def getMember():
-=======
+
     def getMember(self, queryname = None, queryid = None):
         self.memberids
         for member in self.memberids:
@@ -68,15 +60,9 @@ class Trip:
             ##     elif (id == queryid and name != queryname) or (id != queryid and name == queryname): 
             ##          raise ??Error() 
 
->>>>>>> Stashed changes
-        raise RuntimeError("Not yet implemented")
-
     '''
         Create a new event in this trip
     '''
-<<<<<<< Updated upstream
-    def addEvent():
-=======
     def addEvent(self, add_time, add_date, add_label, add_location, add_description):
         self.events.append((Event(add_time, add_date, add_label, add_location, add_description)))
         #do we need an event id?  -- unresolved 
@@ -85,9 +71,6 @@ class Trip:
         ## so prob also a dictionary of id <-> event object
         ## new_event = Event(add_time, add_date, add_label, add_location, add_description)
         ## self.events.append(new_event.getID())
->>>>>>> Stashed changes
-        raise RuntimeError("Not yet implemented")
-
     '''
         Delete an existing event in this trip
     '''
