@@ -4,12 +4,14 @@
 '''
 class Event:
 
-    def __init__(self, time, date, label, location, description):
+    def __init__(self, title, time, date, label, location, description):
+        self.title = title
         self.time = time
         self.date = date
         self.label = label
         self.location = location
         self.description = description
+        self.id = str(title) + str(time) + str(date)
         raise RuntimeError("Not yet implemented")
     
     '''
