@@ -2,19 +2,10 @@
     Represent a member with name and distinct ID
 '''
 class Member:
-    def __init__(self, id, name, balance, color):
-        self.id = id 
+    def __init__(self, name, color):
         self.name = name
-        self.balance  = balance
+        self.balance  = 0
         self.color = color
-        raise RuntimeError("Not yet implemented")
-
-    '''
-        Get the ID of this member
-    '''
-    def getID(self):
-        return self.id
-        raise RuntimeError("Not yet implemented")
 
     '''
         Get the name of this member
