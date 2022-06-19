@@ -3,38 +3,38 @@ class Cost:
     Represent a single cost event with two types of split
     Include details like tags, description, ... for this cost event
     """
-    # expected_cost: a dict where (k, v) = (payer, amount they have to pay)
-    expected_cost = {}
-    # actual_cost: a tuple where (a, b) = (payer, amount he/she actually paid)
-    actual_cost = ()
-    payer_id = ""
+    # expectedCost: a dict where (k, v) = (payer, amount they have to pay)
+    expectedCost = {}
+    # actualCost: a tuple where (a, b) = (payer, amount he/she actually paid)
+    actualCost = ()
+    payerID = ""
     description = ""
     tag = ""
 
-    def __init__(self, payer_id, actual_cost, expected_cost, description="", tag=""):
+    def __init__(self, payerID, actualCost, expectedCost, description="", tag=""):
         """
         Construct a new cost per action with given parameters
 
         Parameters
         ----------
-        payer_id : str
+        payerID : str
             The payer's ID of this cost event
-        actual_cost : int
+        actualCost : int
             The amount the payer paid
-        expected_cost : dict
+        expectedCost : dict
             A dict where (k, v) = (debtors' id, amount they have to pay)
         description : str
             The description of this cost (default: empty string)
         tag : str
             The tag of this cost (default: empty string)
         """
-        self.payer_id = payer_id
-        self.actual_cost = actual_cost
-        self.expected_cost = expected_cost
+        self.payerID = payerID
+        self.actualCost = actualCost
+        self.expectedCost = expectedCost
         self.description = description
         self.tag = tag
 
-    def get_payer(self):
+    def getPayer(self):
         """
         Return the payer's id
 
@@ -43,9 +43,9 @@ class Cost:
         str
             The payer's id
         """
-        return self.payer_id
+        return self.payerID
 
-    def calculate_cost(self):
+    def calculateCost(self):
         """
         Calculate the interpersonal debt relationship
         Return it as a dict
@@ -57,12 +57,12 @@ class Cost:
             Amounts are kept positive
         """
         result = {}
-        for payee_id in self.expected_cost.keys():
-            if payee_id != self.payer_id:
-                result[payee_id] = self.expected_cost.get(payee_id)
+        for payeeID in self.expectedCost.keys():
+            if payeeID != self.payerID:
+                result[payeeID] = self.expectedCost.get(payeeID)
         return result
 
-    def get_tag(self):
+    def getTag(self):
         """
         Get the tage of this cost event
 
@@ -73,7 +73,7 @@ class Cost:
         """
         return self.tag
 
-    def set_tag(self, tag):
+    def setTag(self, tag):
         """
         Set the tag of this cost event
 
@@ -84,7 +84,7 @@ class Cost:
         """
         self.tag = tag
 
-    def get_description(self):
+    def getDescription(self):
         """
         Get the description of this cost event
 
@@ -95,7 +95,7 @@ class Cost:
         """
         return self.description
 
-    def set_description(self, description):
+    def setDescription(self, description):
         """
         Set the description of this cost event
 
@@ -115,12 +115,12 @@ class Cost:
         str
             The details of this cost event
         """
-        total = self.actual_cost
-        payer = self.payer_id
+        total = self.actualCost
+        payer = self.payerID
         payees = ""
-        for payee in self.expected_cost.keys():
+        for payee in self.expectedCost.keys():
             payees += "\t \t \t {payee} should pay {amount} \n".format(payee=payee,
-                                                                       amount=self.expected_cost.get(payee))
+                                                                       amount=self.expectedCost.get(payee))
         string = '''
         Total Cost: {total}
         Payer: {payer}, who paid {amount}
