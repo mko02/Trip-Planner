@@ -1,4 +1,5 @@
 from Cost import *
+from Member import *
 
 '''
     Represent a cost manager (affiliated with a trip)
@@ -7,7 +8,7 @@ from Cost import *
 '''
 
 class CostManager:
-    def __init__(self, list_of_members):                        #completed as of now
+    def __init__(self, listOfMembers):                        #completed as of now
         """ Cost Manager constructor
             Create initial balance sheet with 0 balance
             Create initial empty transaction sheet 
@@ -15,23 +16,23 @@ class CostManager:
         Parameters
         ----------
 
-        list_of_members : Member[]
-            list of initial members                             #What to do if added an additional member?
+        listOfMembers : {name : Member Object}
+            dictionary of initial members                            
 
         Others
         ------
-        balance_sheet : Dictionary of Dictionary
+        balanceSheet : Dictionary of Dictionary
             Debtor maps to Payer maps to amount due
             Debtor A will get/give money from/to Payer B
 
-            balance_sheet = {
-                Debtor ID : Payer = {
-                    Payer ID : amount due or owe
-                    Payer ID : amount due or owe
+            balanceSheet = {
+                Debtor : Payer = {
+                    Payer : amount due or owe
+                    Payer : amount due or owe
                 }
-                Debtor ID : Payer = {
-                    Payer ID : amount due or owe
-                    Payer ID : amount due or owe
+                Debtor : Payer = {
+                    Payer : amount due or owe
+                    Payer : amount due or owe
                 }
             }
 
@@ -45,34 +46,24 @@ class CostManager:
             Debtor 1, Payer 2, positive amount: Person 1 gets xxx from Person 2
             
             
-        transaction_sheet : Cost[]
+        transactionSheet : Cost[]
             A record of all transaction (Cost events), used to calculate / update balance sheet
 
-        Raises
-        ------
-        RuntimeError
-            _description_
         """
-    
-        #raise RuntimeError("Not yet implemented")
 
-        balance_sheet = {}
+        balanceSheet = {}
 
-        for debtorID in list_of_members:
+        for debtorName in listOfMembers:                            
             
-            payer_list = {}
-            for payerID in list_of_members:
-                payer_list[payerID] = 0
+            payerList = {}
+            for payerName in listOfMembers:
+                payerList[payerName] = 0
 
-            balance_sheet[debtorID] = payer_list
+            balanceSheet[debtorName] = payerList
     
-        self.list_of_members = list_of_members
-        self.balance_sheet = balance_sheet
-        self.transaction_sheet = []
-
-    '''
-        Get the balance sheet to show interpersonal debt
-    '''
+        self.listOfMembers = listOfMembers
+        self.balanceSheet = balanceSheet
+        self.transactionSheet = []
 
     def getBalanceSheet(self):                                      #completed as of now
         """ Get the balance sheet to show interpersonal debt
@@ -82,20 +73,10 @@ class CostManager:
         Map of Map
             Returns the balance sheet
 
-        Raises
-        ------
-        RuntimeError
-            _description_
         """
 
-        raise RuntimeError("Not yet implemented")
+        return self.balanceSheet
 
-        return self.balance_sheet
-
-    '''
-        Get the transaction sheet to show all the previous
-        cost events
-    '''
     def getTransactionSheet(self):                                  #completed as of now
         """ Get the transaction sheet to show all the previous cost events
 
@@ -104,19 +85,40 @@ class CostManager:
         Cost[]
             Returns the transaction sheet
 
-        Raises
-        ------
-        RuntimeError
-            _description_
-        """
-        raise RuntimeError("Not yet implemented")
-    
-        return self.transaction_sheet
+        """    
 
-    '''
-        Add a new cost event
-    '''
-    def addCost(self, new_cost):
+        return self.transactionSheet
+
+    def addMember(self, newMember):                                 #completed as of now
+        """ Update balance sheet and list of members when new member is added to Trip
+
+        Parameters
+        ----------
+        newMember : Member Object
+            New member to add into balance sheet and list of member
+        """
+        
+        newMemberName = newMember.getName()
+        self.listOfMembers[newMemberName] = newMember
+
+        #add new member as payer for each original debtor
+        for debtorName in self.balanceSheet:
+            payerList = self.balanceSheet[debtorName]
+            payerList[newMemberName] = 0
+
+        #create dict: new member as debtor with each original payer
+        newMemberPayerList = {}
+        for name in self.listOfMembers:
+            newMemberPayerList[name] = 0
+
+        #update balanceSheet and listOfMembers
+        self.balanceSheet[newMemberName] = newMemberPayerList
+
+
+    def deleteMember(self, unwantedMember):                         #incomplete
+        None
+
+    def addCost(self, newCost):                                        #completed as of now
         """ Record the new Cost event and adds to the transaction sheet
 
         Parameters
@@ -124,15 +126,20 @@ class CostManager:
         new_cost : Cost
             The new Cost event to be added
 
-        Raises
-        ------
-        RuntimeError
-            _description_
         """
 
-        raise RuntimeError("Not yet implemented")
+        self.transactionSheet.append(newCost)
 
-        self.transaction_sheet.append(new_cost)                             #use getter?
+    def deleteCost(self, unwantedCost):                             #completed as of now
+        """ Delete Cost event from transaction sheet
+
+        Parameters
+        ----------
+        unwantedCost : Cost
+            Cost event to be deleted
+        """
+
+        self.transactionSheet.remove(unwantedCost)
         
     '''
         Calculate results
@@ -140,72 +147,63 @@ class CostManager:
         ------Additional Note------
         I am wondering if this can be involved in the getBalanceSheet
     '''
-    def calculateResult(self):                                             #need testing
+    def calculateResult(self):                                             #completed as of now
         """ Calculate the results using transaction sheet
             Updates the balance sheet
 
-        Raises
-        ------
-        RuntimeError
-            _description_
+            Subtract from debtor -> payer balance value
+            Add to payer -> debtor balance value
+
         """
-        #raise RuntimeError("Not yet implemented")
 
-        #Assuming calculateCost() returns 
+        #Clear balance first to recalculate
+        self.clearBalance()
 
-        # dictionary, i can just access 
-        # return amount will be positive
-
-        # 
-        # { Debtor1 ID : amount due,
-        # Debtor2 ID : amount due,
-        # Debtor3 ID : amount due, }
-        # 
-
-
-        for cost_event in self.transaction_sheet:                           #use getter?
-            calculated_cost = cost_event.calculateCost()
-            payerID = calculated_cost[0]
-            debtorDict = calculated_cost[1]
+        for costEvent in self.transactionSheet:
+            payerName = costEvent.getPayer()
+            calculated_cost = costEvent.calculateCost()
 
             # subtract from debtor and add to payer
-            for debtorID in debtorDict:
-                self.balance_sheet[debtorID][payerID] -= debtorDict[debtorID]   #use getter?
-                self.balance_sheet[payerID][debtorID] += debtorDict[debtorID]
+            for debtorName in calculated_cost:
+                self.balanceSheet[debtorName][payerName] -= calculated_cost[debtorName]
+                self.balanceSheet[payerName][debtorName] += calculated_cost[debtorName]
 
-
-    '''
-        Clear the balance sheet
-    '''
     def clearBalance(self):                                     #completed as of now
         """ Clear the balance sheet by creating blank balance sheet
 
-        Raises
-        ------
-        RuntimeError
-            _description_
         """
-        #raise RuntimeError("Not yet implemented")
 
-        new_balance_sheet = {}
+        newBalanceSheet = {}
 
-        for debtorID in self.list_of_members:                   #maybe make a getter for list_of_members?
+        for debtorName in self.listOfMembers:
             
-            payer_list = {}
-            for payerID in self.list_of_members:
-                payer_list[payerID] = 0
+            payerList = {}
+            for payerName in self.listOfMembers:
+                payerList[payerName] = 0
 
-            new_balance_sheet[debtorID] = payer_list
+            newBalanceSheet[debtorName] = payerList
 
-        self.balance_sheet = new_balance_sheet
+        self.balanceSheet = newBalanceSheet
         
-    def printBalance(self):
+    def printBalance(self):                                 #completed as of now
         """ Print out balance sheet
+            For testing and visual purposes
 
-        Raises
-        ------
-        RuntimeError
-            _description_
         """
-        raise RuntimeError("Not yet implemented")
+        debtorAxis = "xxx\t"
+
+        for debtorName in self.balanceSheet:
+            debtorAxis += f"{debtorName}\t"
+
+        print(debtorAxis)
+
+        for debtorName in self.balanceSheet:
+            payerAmountDict = self.balanceSheet[debtorName]        
+            payerAxis = debtorName + "\t"
+            for payerName in payerAmountDict:
+                amount = payerAmountDict[payerName]
+                payerAxis += f"{amount}\t"
+
+            print(payerAxis)
+
 
