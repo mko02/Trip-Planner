@@ -11,9 +11,7 @@ class Event:
         self.label = label
         self.location = location
         self.description = description
-        self.id = str(title) + str(time) + str(date)
-        raise RuntimeError("Not yet implemented")
-    
+        self.id = str(title) + str(time) + str(date)    
     '''
         Get id of this event
     '''

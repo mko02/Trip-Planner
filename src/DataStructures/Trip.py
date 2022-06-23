@@ -29,11 +29,14 @@ class Trip:
         raise RuntimeError("Not yet implemented")
 
     '''
-        Get an event specifically by a tag
-        Could be overloaded or just one kind of tag(e.g. name, ID, ...)
+        Get an event specifically by id
     '''
-    def getEvent(self):
-        raise RuntimeError("Not yet implemented")
+    def getEvent(self, queryId):
+        event  = self.events.get(queryId, "QueryNotFound")
+        if event == "QueryNotFound":
+            return "QueryNotFound"
+        else:
+            return event
 
     '''
         Get a member specifically by a name or ID
