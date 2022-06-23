@@ -16,8 +16,8 @@ class CostManager:
         Parameters
         ----------
 
-        list_of_members : [{name : Member Object}]
-            list of initial members                             #What to do if added an additional member?
+        listOfMembers : {name : Member Object}
+            dictionary of initial members                            
 
         Others
         ------
@@ -53,7 +53,7 @@ class CostManager:
 
         balanceSheet = {}
 
-        for debtorName in listOfMembers:                            #can not access list like this
+        for debtorName in listOfMembers:                            
             
             payerList = {}
             for payerName in listOfMembers:
@@ -89,23 +89,22 @@ class CostManager:
 
         return self.transactionSheet
 
-    def addMember(self, newMember):                                 #not done
+    def addMember(self, newMember):                                 #completed as of now
         """ Update balance sheet and list of members when new member is added to Trip
 
         Parameters
         ----------
-        newMember : Member  or  {name : Member}                     #Member class better?
+        newMember : Member Object
             New member to add into balance sheet and list of member
         """
         
         newMemberName = newMember.getName()
+        self.listOfMembers[newMemberName] = newMember
 
         #add new member as payer for each original debtor
         for debtorName in self.balanceSheet:
             payerList = self.balanceSheet[debtorName]
-
-            for payerName in payerList:
-                payerList[newMemberName] = 0
+            payerList[newMemberName] = 0
 
         #create dict: new member as debtor with each original payer
         newMemberPayerList = {}
@@ -114,12 +113,9 @@ class CostManager:
 
         #update balanceSheet and listOfMembers
         self.balanceSheet[newMemberName] = newMemberPayerList
-        self.listOfMembers[newMemberName] = newMember
-
-        
 
 
-    def deleteMember(self, unwantedMember):
+    def deleteMember(self, unwantedMember):                         #incomplete
         None
 
     def addCost(self, newCost):                                        #completed as of now
@@ -151,7 +147,7 @@ class CostManager:
         ------Additional Note------
         I am wondering if this can be involved in the getBalanceSheet
     '''
-    def calculateResult(self):                                             #need testing
+    def calculateResult(self):                                             #completed as of now
         """ Calculate the results using transaction sheet
             Updates the balance sheet
 
@@ -159,6 +155,9 @@ class CostManager:
             Add to payer -> debtor balance value
 
         """
+
+        #Clear balance first to recalculate
+        self.clearBalance()
 
         for costEvent in self.transactionSheet:
             payerName = costEvent.getPayer()
@@ -188,7 +187,7 @@ class CostManager:
         
     def printBalance(self):                                 #completed as of now
         """ Print out balance sheet
-            Visual purpose
+            For testing and visual purposes
 
         """
         debtorAxis = "xxx\t"
