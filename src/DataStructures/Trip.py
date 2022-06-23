@@ -8,10 +8,10 @@ from Event import *
 from Member import * 
 
 class Trip:
-    def __init__(self, events, members, costmanager):
+    def __init__(self, events, members):
         self.events = {} #id: event_object
         self.members = {}  #name: member_object
-        self.costmanager = CostManager(self.members)
+        self.costManager = CostManager(self.members)
         raise RuntimeError("Not yet implemented")
 
     '''
@@ -42,8 +42,8 @@ class Trip:
         Get a member specifically by a name or ID
     '''
 
-    def getMember(self, queryname = None):
-        member = self.members.get(queryname, "QueryNotFound")
+    def getMember(self, queryName = None):
+        member = self.members.get(queryName, "QueryNotFound")
         if member == "QueryNotFound":
             return "QueryNotFound"
         else:

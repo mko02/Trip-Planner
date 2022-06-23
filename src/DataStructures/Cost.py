@@ -5,30 +5,28 @@ class Cost:
     """
     # expectedCost: a dict where (k, v) = (payer, amount they have to pay)
     expectedCost = {}
-    # actualCost: a tuple where (a, b) = (payer, amount he/she actually paid)
-    actualCost = ()
-    payerID = ""
+    actualCost = 0
     description = ""
     tag = ""
 
-    def __init__(self, payerID, actualCost, expectedCost, description="", tag=""):
+    def __init__(self, payer, actualCost, expectedCost, description="", tag=""):
         """
         Construct a new cost per action with given parameters
 
         Parameters
         ----------
-        payerID : str
-            The payer's ID of this cost event
+        payer : Member
+            The payer (Member Object) of this cost event
         actualCost : int
             The amount the payer paid
         expectedCost : dict
-            A dict where (k, v) = (debtors' id, amount they have to pay)
+            A dict where (k, v) = (debtor (Member Object), amount they have to pay)
         description : str
             The description of this cost (default: empty string)
         tag : str
             The tag of this cost (default: empty string)
         """
-        self.payerID = payerID
+        self.payer = payer
         self.actualCost = actualCost
         self.expectedCost = expectedCost
         self.description = description
@@ -36,14 +34,14 @@ class Cost:
 
     def getPayer(self):
         """
-        Return the payer's id
+        Return the payer (Member Object)
 
         Returns
         -------
-        str
-            The payer's id
+        Member
+            The payer of this cost event
         """
-        return self.payerID
+        return self.payer
 
     def calculateCost(self):
         """
@@ -57,9 +55,9 @@ class Cost:
             Amounts are kept positive
         """
         result = {}
-        for payeeID in self.expectedCost.keys():
-            if payeeID != self.payerID:
-                result[payeeID] = self.expectedCost.get(payeeID)
+        for debtor in self.expectedCost.keys():
+            if debtor != self.payer:
+                result[debtor] = self.expectedCost.get(debtor)
         return result
 
     def getTag(self):
@@ -116,16 +114,16 @@ class Cost:
             The details of this cost event
         """
         total = self.actualCost
-        payer = self.payerID
+        payer = self.payer
         payees = ""
         for payee in self.expectedCost.keys():
-            payees += "\t \t \t {payee} should pay {amount} \n".format(payee=payee,
+            payees += "\t \t \t {payee} should pay {amount} \n".format(payee=payee.getName(),
                                                                        amount=self.expectedCost.get(payee))
         string = '''
         Total Cost: {total}
         Payer: {payer}, who paid {amount}
         Payees: \n {payees}
         Description: {description}
-        Tag: {tag} \n'''.format(total=total, payer=payer, amount=total,
+        Tag: {tag} \n'''.format(total=total, payer=payer.getName(), amount=total,
                                 payees=payees, description=self.description, tag=self.tag)
         return string
