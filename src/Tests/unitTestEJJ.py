@@ -1,7 +1,12 @@
-from src.DataStructures.Cost import Cost
-from src.DataStructures.CostManager import CostManager
-from src.DataStructures.Member import Member
 
+import os
+import sys
+PROJECT_ROOT = os.path.abspath(os.path.join(
+                  os.path.dirname(__file__), 
+                  os.pardir)
+)
+sys.path.append(PROJECT_ROOT)
+import DataStructures
 
 def testCreateCostEvent(tested_event, test_payer_member): 
     if tested_event.getPayer() !=  test_payer_member:
