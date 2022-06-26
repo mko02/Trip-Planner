@@ -22,7 +22,7 @@ class CostManager:
         Others
         ------
         balanceSheet : Dictionary of Dictionary
-            Debtor maps to Payer maps to amount due
+            Debtor(name) maps to Payer(name) maps to amount due
             Debtor A will get/give money from/to Payer B
 
             balanceSheet = {
