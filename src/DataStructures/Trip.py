@@ -8,7 +8,7 @@ from Event import *
 from Member import * 
 
 class Trip:
-    def __init__(self, events, members):
+    def __init__(self):
         self.events = {} #id: event_object
         self.members = {}  #name: member_object
         self.costManager = CostManager(self.members)

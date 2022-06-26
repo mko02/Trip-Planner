@@ -4,7 +4,7 @@
 class Member:
     def __init__(self, name, color):
         self.name = name
-        self.balance  = 0
+        self.balance = 0
         self.color = color
 
     '''
