@@ -3,7 +3,7 @@
 '''
 class Member:
     def __init__(self, name, color):
-        self.name = name
+        self.name = name #notmutable
         self.balance  = 0
         self.color = color
 
