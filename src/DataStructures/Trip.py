@@ -3,9 +3,9 @@
     handle all costs in this trip
 '''
 
-from src.DataStructures.CostManager import *
-from src.DataStructures.Event import *
-from src.DataStructures.Member import *
+from CostManager import *
+from Event import *
+from Member import *
 
 class Trip:
     def __init__(self):

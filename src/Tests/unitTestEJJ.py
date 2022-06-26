@@ -1,15 +1,22 @@
-
 import os
 import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(
                   os.path.dirname(__file__), 
                   os.pardir)
 )
+Data_Root = os.path.abspath(os.path.join(
+                os.path.dirname(__file__),
+                os.pardir + "/DataStructures")
+)
 sys.path.append(PROJECT_ROOT)
+sys.path.append(Data_Root)
+print(sys.path)
+# sys.path[0] = PROJECT_ROOT
 
-from src.DataStructures.Member import Member
-from src.DataStructures.Cost import Cost
-from src.DataStructures.CostManager import CostManager
+import DataStructures
+from DataStructures.Member import Member
+from DataStructures.Cost import Cost
+from DataStructures.CostManager import CostManager
 
 def testCreateCostEvent(tested_event, test_payer_member): 
     if tested_event.getPayer() !=  test_payer_member:
