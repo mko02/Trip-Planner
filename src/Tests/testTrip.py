@@ -1,6 +1,14 @@
-from demo.src.DataStructures.Trip import *
-from demo.src.DataStructures.Event import *
-from demo.src.DataStructures.Member import *
+import os
+import sys
+PROJECT_ROOT = os.path.abspath(os.path.join(
+                  os.path.dirname(__file__),
+                  os.pardir)
+)
+sys.path.append(PROJECT_ROOT)
+
+from src.DataStructures.Trip import *
+from src.DataStructures.Event import *
+from src.DataStructures.Member import *
 
 class testTrip:
     def createTrip(self):

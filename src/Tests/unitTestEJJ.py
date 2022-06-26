@@ -6,7 +6,10 @@ PROJECT_ROOT = os.path.abspath(os.path.join(
                   os.pardir)
 )
 sys.path.append(PROJECT_ROOT)
-import DataStructures
+
+from src.DataStructures.Member import Member
+from src.DataStructures.Cost import Cost
+from src.DataStructures.CostManager import CostManager
 
 def testCreateCostEvent(tested_event, test_payer_member): 
     if tested_event.getPayer() !=  test_payer_member:

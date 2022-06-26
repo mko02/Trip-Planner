@@ -1,5 +1,5 @@
-from Cost import *
-from Member import *
+from src.DataStructures.Cost import *
+from src.DataStructures.Member import *
 
 '''
     Represent a cost manager (affiliated with a trip)
