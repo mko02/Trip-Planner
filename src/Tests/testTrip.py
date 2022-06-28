@@ -1,14 +1,20 @@
 import os
 import sys
 PROJECT_ROOT = os.path.abspath(os.path.join(
-                  os.path.dirname(__file__),
+                  os.path.dirname(__file__), 
                   os.pardir)
 )
+Data_Root = os.path.abspath(os.path.join(
+                os.path.dirname(__file__),
+                os.pardir + "/DataStructures")
+)
 sys.path.append(PROJECT_ROOT)
+sys.path.append(Data_Root)
+print(sys.path)
 
-from src.DataStructures.Trip import *
-from src.DataStructures.Event import *
-from src.DataStructures.Member import *
+from DataStructures.Trip import *
+from DataStructures.Event import *
+from DataStructures.Member import *
 
 class testTrip:
     def createTrip(self):

@@ -13,7 +13,6 @@ sys.path.append(Data_Root)
 print(sys.path)
 # sys.path[0] = PROJECT_ROOT
 
-import DataStructures
 from DataStructures.Member import Member
 from DataStructures.Cost import Cost
 from DataStructures.CostManager import CostManager

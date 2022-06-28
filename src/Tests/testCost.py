@@ -1,4 +1,18 @@
-from src.DataStructures.Cost import Cost
+import os
+import sys
+PROJECT_ROOT = os.path.abspath(os.path.join(
+                  os.path.dirname(__file__), 
+                  os.pardir)
+)
+Data_Root = os.path.abspath(os.path.join(
+                os.path.dirname(__file__),
+                os.pardir + "/DataStructures")
+)
+sys.path.append(PROJECT_ROOT)
+sys.path.append(Data_Root)
+print(sys.path)
+
+from DataStructures.Cost import Cost
 
 
 def main():
