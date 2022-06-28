@@ -17,12 +17,12 @@ from DataStructures.Event import *
 from DataStructures.Member import *
 
 class testTrip:
-    def createTrip(self):
+    def createTrip():
         t1 = Trip()
         t2 = Trip()
         assert t1 != t2
 
-    def getEventList(self):
+    def getEventList():
         t1 = Trip()
         assert t1.getEventList() == {} #0
         t1.addEvent("e1", "1:00", "Jun. 24", "Meal", "Loc1", "None")
@@ -35,7 +35,7 @@ class testTrip:
         # Expected: 6, title, time, date, label, location, description
         # Actual: 5, time, date, label, location, description
 
-    def getEvent(self):
+    def getEvent():
         t1 = Trip()
         assert t1.getEvent("e11:00Jun. 24") == "QueryNotFound" #0
         t1.addEvent("e1", "1:00", "Jun. 24", "Meal", "Loc1", "None")
@@ -45,7 +45,7 @@ class testTrip:
         e2 = Event("e2", "2:00", "Jun. 24", "Walk", "Loc2", "None")
         assert t1.getEvent("e22:00Jun. 24") == e2 #2
 
-    def getMember(self):
+    def getMember():
         t1 = Trip()
         m1 = Member("m1", "red")
         m2 = Member("m2", "blue")
@@ -55,7 +55,7 @@ class testTrip:
         t1.addMember("m2", "blue")
         assert t1.getMember("m2") == m2 #2
 
-    def getMemberList(self):
+    def getMemberList():
         t1 = Trip()
         m1 = Member("m1", "red")
         m2 = Member("m2", "blue")
@@ -68,7 +68,7 @@ class testTrip:
         memberList["m2"] = m2
         assert t1.getMemberList() == memberList
 
-    def deleteEvent(self):
+    def deleteEvent():
         t1 = Trip()
         eventList = {}
         t1.deleteEvent("e22:00Jun. 24")
@@ -85,7 +85,7 @@ class testTrip:
         t1.deleteEvent("e11:00Jun. 24")
         assert t1.getEventList() == eventList
 
-    def deleteMember(self):
+    def deleteMember():
         t1 = Trip()
         memberList = {}
         t1.deleteMember("m1")

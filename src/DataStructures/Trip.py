@@ -12,21 +12,21 @@ class Trip:
         self.events = {} #id: event_object
         self.members = {}  #name: member_object
         self.costManager = CostManager(self.members)
-        raise RuntimeError("Not yet implemented")
+ 
 
     '''
         Get the list of events that are currently in this trip
     '''
     def getEventList(self):
         return self.events
-        raise RuntimeError("Not yet implemented")
+ 
 
     '''
         Get the list of members that are currently in this trip
     '''
     def getMemberList(self):
         return self.members
-        raise RuntimeError("Not yet implemented")
+ 
 
     '''
         Get an event specifically by id
