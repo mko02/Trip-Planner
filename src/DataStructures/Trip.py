@@ -52,8 +52,8 @@ class Trip:
     '''
         Create a new event in this trip
     '''
-    def addEvent(self, add_time, add_date, add_label, add_location, add_description):
-        newEvent=Event(add_time, add_date, add_label, add_location, add_description)
+    def addEvent(self, add_title, add_time, add_date, add_label, add_location, add_description):
+        newEvent=Event(add_title, add_time, add_date, add_label, add_location, add_description)
         self.events[newEvent.getID()] = newEvent
 
     '''
