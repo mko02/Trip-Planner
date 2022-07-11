@@ -1,91 +1,64 @@
-'''
-    Represent a mutable event with details such as name, description, date ...
-    Allow manipulations on details
-'''
-class Event:
+from datetime import datetime
 
-    def __init__(self, title, time, date, label, location, description):
+class Event:
+    """
+    Represent a Event instance
+
+    Attributes
+    ----------
+    title : str
+        The title of this event
+    start_time : datetime.datetime
+        The start time of this event
+    end_time : datetime.datetime
+        The end time of this event
+    label : str
+        The label of this event
+    location : str
+        The location of this event
+    description : str
+        The description of this event
+    """
+    def __init__(self, title, start_time, end_time, label, location, description):
+        """
+        Construct a new Event with given parameters
+
+        Parameters
+        ----------
+        title : str
+        time : datetime.datetime
+        label : str
+        location : str
+        description : str
+        """
         self.title = title
-        self.time = time
-        self.date = date
+        self.start_time = start_time
+        self.end_time = end_time
         self.label = label
         self.location = location
         self.description = description
-        self.id = str(title) + str(time) + str(date)    
-    '''
-        Get id of this event
-    '''
 
-    def getID(self):
-        return self.id
-        raise RuntimeError("Not yet implimented")
+    def get_id(self):
+        return self.title + self.start_time.strptime("%y, %m, %d, %H:%M")
 
-    '''
-        Get time of this event
-    '''
-    def getTime(self):
-        return self.time
-        raise RuntimeError("Not yet implimented")
+    # Check representation exposure
+    def get_start(self):
+        return self.start_time
 
-    '''
-        Get date of this event
-    '''
-    def getDate(self):
-        return self.date
-        raise RuntimeError("Not yet implemented")
+    def get_end(self):
+        return self.end_time
 
-    '''
-        Get the label of this event
-    '''
-    def getLabel(self):
+    def get_label(self):
         return self.label
-        raise RuntimeError("Not yet implemented")
 
-    '''
-        Get the location of this event
-    '''
-    def getLocation(self):
-        return self.location
-        raise RuntimeError("Not yet implemented")
-
-    '''
-        Get the description of this event
-    '''
-    def getDescription(self):
+    def get_description(self):
         return self.description
-        raise RuntimeError("Not yet implemented")
 
-    '''
-        Set the time of this event
-    '''
-    def setTime(self, newTime):
-        self.time = newTime
-        raise RuntimeError("Not yet implemented")
+    def get_title(self):
+        return self.title
 
-    '''
-        Set the date of this event
-    '''
-    def setDate(self, newDate):
-        self.date = newDate
-        raise RuntimeError("Not yet implemented")
+    def __eq__(self, other):
+        return self.get_id() == other.get_id()
 
-    '''
-        Set the label of this event
-    '''
-    def setLabel(self, newLabel):
-        self.label = newLabel
-        raise RuntimeError("Not yet implemented")
-
-    '''
-        Set the location of this event
-    '''
-    def setLocation(self, newLocation):
-        self.location = newLocation
-        raise RuntimeError("Not yet implemented")
-
-    '''
-        Set the description of this event
-    '''
-    def setDescription(self, newDescription):
-        self.description = newDescription
-        raise RuntimeError("Not yet implemented")
+    def __hash__(self):
+        return self.get_id().__hash__()

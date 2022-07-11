@@ -1,129 +1,144 @@
 class Cost:
     """
-    Represent a single cost event with two types of split
-    Include details like tags, description, ... for this cost event
+    Represent a mutable Cost event
+    The amount of expected cost and total are immutable
     """
-    # expectedCost: a dict where (k, v) = (payer, amount they have to pay)
-    expectedCost = {}
-    actualCost = 0
-    description = ""
-    tag = ""
-
-    def __init__(self, payer, actualCost, expectedCost, description="", tag=""):
+    def __init__(self, payer, total, expected_cost, title, description=None, tag=None):
         """
-        Construct a new cost per action with given parameters
+        Constructs a new Cost event
 
         Parameters
         ----------
         payer : Member
-            The payer (Member Object) of this cost event
-        actualCost : int
-            The amount the payer paid
-        expectedCost : dict
-            A dict where (k, v) = (debtor (Member Object), amount they have to pay)
+            The person who pays the total in this cost event
+        total : float
+            The total amount in this cost event
+        expected_cost : dict
+            (k, v) = (person, the amount he/she has to pay)
+        title : str
+            The title of this cost
         description : str
-            The description of this cost (default: empty string)
         tag : str
-            The tag of this cost (default: empty string)
         """
         self.payer = payer
-        self.actualCost = actualCost
-        self.expectedCost = expectedCost
+        self.total = total
+        self.expected_cost = expected_cost
+        self.title = title
         self.description = description
         self.tag = tag
 
-    def getPayer(self):
+    def get_payer(self):
         """
-        Return the payer (Member Object)
+        Return the payer of the cost event
 
         Returns
         -------
         Member
-            The payer of this cost event
+            the payer of the cost event
         """
         return self.payer
 
-    def calculateCost(self):
+    def get_total(self):
         """
-        Calculate the interpersonal debt relationship
-        Return it as a dict
+        Return the total of the cost event
 
         Returns
         -------
-        dict
-            (k, v) = (Every debtor in this cost, The amount they have to pay the payer)
-            Amounts are kept positive
+        float
+            the total of the cost event
         """
-        result = {}
-        for debtor in self.expectedCost.keys():
-            if debtor != self.payer:
-                result[debtor] = self.expectedCost.get(debtor)
-        return result
+        return self.total
 
-    def getTag(self):
+    def get_title(self):
         """
-        Get the tage of this cost event
+        Return the title of the cost event
 
         Returns
         -------
         str
-            The tag of this cost
+            the title of the cost event
         """
-        return self.tag
+        return self.title
 
-    def setTag(self, tag):
+    def get_description(self):
         """
-        Set the tag of this cost event
-
-        Parameters
-        ----------
-        tag : str
-            The tag being set to this cost
-        """
-        self.tag = tag
-
-    def getDescription(self):
-        """
-        Get the description of this cost event
+        Return the description of the cost event
 
         Returns
         -------
         str
-            The description of this cost event
+            the description of the cost event
         """
         return self.description
 
-    def setDescription(self, description):
+    def get_tag(self):
+        """
+        Return the tag of the cost event
+
+        Returns
+        -------
+        str
+            the tag of the cost event
+        """
+        return self.tag
+
+    def calculate_debt(self):
+        """
+        Calculate the interpersonal debt relationship within this cost event
+
+        Returns
+        -------
+        dict : (Member, float)
+            (k, v) = (debtor, the amount they have to pay the payer)
+
+        Examples
+        --------
+        expected_cost : {A : 20, B : 30, C : 50}
+        payer : A
+
+        The result would be {B : 30, C : 50} because A is the payer
+        """
+        result = {}
+        for debtor in self.expected_cost.keys():
+            if debtor != self.payer:
+                result[debtor] = self.expected_cost[debtor]
+        return result
+
+    def set_title(self, title):
+        """
+        Set the title of this cost event
+
+        Parameters
+        ----------
+        title : str
+            the new title of this cost event
+        """
+        self.title = title
+
+    def set_description(self, description):
         """
         Set the description of this cost event
 
         Parameters
         ----------
         description : str
-            The description being set to this cost event
+            the new description of this cost event
         """
         self.description = description
 
-    def __str__(self):
+    def set_tag(self, tag):
         """
-        Return the details of this cost event as a string
+        Set the tag of this cost event
+        Parameters
+        ----------
+        tag : str
+            the new tag of this cost event
+        """
+        self.tag = tag
 
-        Returns
-        -------
-        str
-            The details of this cost event
-        """
-        total = self.actualCost
-        payer = self.payer
-        payees = ""
-        for payee in self.expectedCost.keys():
-            payees += "\t \t \t {payee} should pay {amount} \n".format(payee=payee.getName(),
-                                                                       amount=self.expectedCost.get(payee))
-        string = '''
-        Total Cost: {total}
-        Payer: {payer}, who paid {amount}
-        Payees: \n {payees}
-        Description: {description}
-        Tag: {tag} \n'''.format(total=total, payer=payer.getName(), amount=total,
-                                payees=payees, description=self.description, tag=self.tag)
-        return string
+    def __eq__(self, other):
+        return self.payer == other.payer and self.total == other.total and self.title == other.title \
+                and self.description == other.description and self.expected_cost == other.expected_cost
+
+    def __hash__(self):
+        return self.total
