@@ -1,209 +1,109 @@
-from Cost import *
-from Member import *
+from DataStructures.Cost import Cost
 
-'''
-    Represent a cost manager (affiliated with a trip)
-    that handles all the cost events including save, calculating,
-    providing results access
-'''
 
 class CostManager:
-    def __init__(self, listOfMembers):                        #completed as of now
-        """ Cost Manager constructor
-            Create initial balance sheet with 0 balance
-            Create initial empty transaction sheet 
+    """
+    Represent a mutable Cost manager
+    Grant access to the balance sheet to see the interpersonal debt relationship
+    Adding Cost event to update the balance sheet
+
+    Attributes
+    ----------
+    balance : dict
+        (k, dict) = (debtor, their relationship with others)
+            inner dict (k, v) = (others, the amount they have to pay to the person)
+    transactions: dict
+        (k, v) = (ID of the cost, Cost object)
+    """
+    ID_count = 1
+
+    def __init__(self):
+        self.balance = {}
+        self.transactions = {}
+
+    # Test representation exposure here
+    def get_balance(self):
+        return self.balance
+
+    # Test representation exposure here
+    def get_transactions(self):
+        return self.transactions
+
+    def calculate_balance(self, cost):
+        """
+        Update the balance by calculating the upcoming cost
+
+        This method should be kept private, updating balance sheet would be done by
+        adding the cost event into the cost manager.
 
         Parameters
         ----------
-
-        listOfMembers : {name : Member Object}
-            dictionary of initial members                            
-
-        Others
-        ------
-        balanceSheet : Dictionary of Dictionary
-            Debtor(name) maps to Payer(name) maps to amount due
-            Debtor A will get/give money from/to Payer B
-
-            balanceSheet = {
-                Debtor : Payer = {
-                    Payer : amount due or owe
-                    Payer : amount due or owe
-                }
-                Debtor : Payer = {
-                    Payer : amount due or owe
-                    Payer : amount due or owe
-                }
-            }
-
-            xxx         Debtor 1    Debtor 2    Debtor 3    <- outer layer
-            Payer 1         0       -amount A   +amount B
-            Payer 2     +amount A        0      -amount C
-            Payer 3     -amount B   +amount C        0
-                ^ inner layer
-
-            Debtor 2, Payer 1, negative amount: Person 2 pays xxx to    Person 1
-            Debtor 1, Payer 2, positive amount: Person 1 gets xxx from Person 2
-            
-            
-        transactionSheet : Cost[]
-            A record of all transaction (Cost events), used to calculate / update balance sheet
-
+        cost : Cost
+            The upcoming cost to be calculated
         """
+        single_cost = cost.calculate_debt()
+        payer = cost.get_payer()
+        for debtor in single_cost.keys():
+            payer_to_debtor = self.balance[payer][debtor]
+            debtor_to_payer = self.balance[debtor][payer] + single_cost[debtor]
+            self.balance[payer][debtor] = payer_to_debtor - debtor_to_payer
+            self.balance[debtor][payer] = debtor_to_payer - payer_to_debtor
 
-        balanceSheet = {}
-
-        for debtorName in listOfMembers:                            
-            
-            payerList = {}
-            for payerName in listOfMembers:
-                payerList[payerName] = 0
-
-            balanceSheet[debtorName] = payerList
-    
-        self.listOfMembers = listOfMembers
-        self.balanceSheet = balanceSheet
-        self.transactionSheet = []
-
-    def getBalanceSheet(self):                                      #completed as of now
-        """ Get the balance sheet to show interpersonal debt
-
-        Returns
-        -------
-        Map of Map
-            Returns the balance sheet
-
+    def add_member(self, member):
         """
-
-        return self.balanceSheet
-
-    def getTransactionSheet(self):                                  #completed as of now
-        """ Get the transaction sheet to show all the previous cost events
-
-        Returns
-        -------
-        Cost[]
-            Returns the transaction sheet
-
-        """    
-
-        return self.transactionSheet
-
-    def addMember(self, newMember):                                 #completed as of now
-        """ Update balance sheet and list of members when new member is added to Trip
+        Add a member into the cost manager
 
         Parameters
         ----------
-        newMember : Member Object
-            New member to add into balance sheet and list of member
+        member : Member
+            The member aaded to the cost manager
         """
-        
-        newMemberName = newMember.getName()
-        self.listOfMembers[newMemberName] = newMember
+        curr = self.balance.keys()
+        self.balance[member] = {}
+        for debtor in curr:
+            self.balance[debtor][member] = 0.0
+            self.balance[member][debtor] = 0.0
 
-        #add new member as payer for each original debtor
-        for debtorName in self.balanceSheet:
-            payerList = self.balanceSheet[debtorName]
-            payerList[newMemberName] = 0
-
-        #create dict: new member as debtor with each original payer
-        newMemberPayerList = {}
-        for name in self.listOfMembers:
-            newMemberPayerList[name] = 0
-
-        #update balanceSheet and listOfMembers
-        self.balanceSheet[newMemberName] = newMemberPayerList
-
-
-    def deleteMember(self, unwantedMember):                         #incomplete
-        None
-
-    def addCost(self, newCost):                                        #completed as of now
-        """ Record the new Cost event and adds to the transaction sheet
+    def delete_member(self, member):
+        """
+        Delete a current member from this cost manager, including the balance sheet
+        No behavior if the member does not exist in this manager
 
         Parameters
         ----------
-        new_cost : Cost
-            The new Cost event to be added
-
+        member : Member
+            The member deleted from this cost manager
         """
+        if member in self.balance.keys():
+            self.balance.pop(member)
+            for debtor in self.balance.keys():
+                self.balance[debtor].pop(member)
 
-        self.transactionSheet.append(newCost)
-
-    def deleteCost(self, unwantedCost):                             #completed as of now
-        """ Delete Cost event from transaction sheet
+    def add_cost(self, cost):
+        """
+        Add a new cost into the transaction sheet
+        Invoke updating the balance immediately
 
         Parameters
         ----------
-        unwantedCost : Cost
-            Cost event to be deleted
+        cost : Cost
         """
+        self.ID_count += 1
+        self.transactions[self.ID_count] = cost
+        self.calculate_balance(cost)
 
-        self.transactionSheet.remove(unwantedCost)
-        
-    '''
-        Calculate results
-
-        ------Additional Note------
-        I am wondering if this can be involved in the getBalanceSheet
-    '''
-    def calculateResult(self):                                             #completed as of now
-        """ Calculate the results using transaction sheet
-            Updates the balance sheet
-
-            Subtract from debtor -> payer balance value
-            Add to payer -> debtor balance value
-
-        """
-
-        #Clear balance first to recalculate
-        self.clearBalance()
-
-        for costEvent in self.transactionSheet:
-            payerName = costEvent.getPayer()
-            calculated_cost = costEvent.calculateCost()
-
-            # subtract from debtor and add to payer
-            for debtorName in calculated_cost:
-                self.balanceSheet[debtorName][payerName] -= calculated_cost[debtorName]
-                self.balanceSheet[payerName][debtorName] += calculated_cost[debtorName]
-
-    def clearBalance(self):                                     #completed as of now
-        """ Clear the balance sheet by creating blank balance sheet
-
-        """
-
-        newBalanceSheet = {}
-
-        for debtorName in self.listOfMembers:
-            
-            payerList = {}
-            for payerName in self.listOfMembers:
-                payerList[payerName] = 0
-
-            newBalanceSheet[debtorName] = payerList
-
-        self.balanceSheet = newBalanceSheet
-        
-    def printBalance(self):                                 #completed as of now
-        """ Print out balance sheet
-            For testing and visual purposes
-
-        """
-        debtorAxis = "xxx\t"
-
-        for debtorName in self.balanceSheet:
-            debtorAxis += f"{debtorName}\t"
-
-        print(debtorAxis)
-
-        for debtorName in self.balanceSheet:
-            payerAmountDict = self.balanceSheet[debtorName]        
-            payerAxis = debtorName + "\t"
-            for payerName in payerAmountDict:
-                amount = payerAmountDict[payerName]
-                payerAxis += f"{amount}\t"
-
-            print(payerAxis)
+    def __str__(self):
+        result = ""
+        for debtor in self.balance.keys():
+            result = result + debtor.get_name() + "\n" + "-------------\n"
+            they_owe_you = "They Owe You: \n"
+            you_owe_them = "You Owe Them: \n"
+            for payer in self.balance[debtor].keys():
+                if self.balance[debtor][payer] > 0:
+                    you_owe_them = you_owe_them + "\t" + payer.get_name() + " : " + str(self.balance[debtor][payer]) + "\n"
+                if self.balance[debtor][payer] < 0:
+                    they_owe_you = they_owe_you + "\t" + payer.get_name() + " : " + str(-self.balance[debtor][payer]) + "\n"
+            result = result + they_owe_you + you_owe_them + "\n"
+        return result
 
 

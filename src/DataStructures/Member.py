@@ -1,45 +1,62 @@
-'''
-    Represent a member with name and distinct ID
-'''
 class Member:
-    def __init__(self, name, color):
-        self.name = name #notmutable
-        self.balance  = 0
-        self.color = color
+    """
+    Represent a Member with name, color, and balance
 
-    '''
-        Get the name of this member
-    '''
-    def getName(self):
+    Attributes
+    ----------
+    name : str
+        The name of this member
+    color : str
+        The color of this member
+    balance : float
+        The current balance of this member
+    """
+    def __init__(self, name, color):
+        """
+        Construct an instance of Member
+
+        Parameters
+        ----------
+        name : str
+        color : str
+        """
+        self.name = name
+        self.color = color
+        self.balance = 0.0
+
+    def get_name(self):
         return self.name
 
-    '''
-        Get the balance of this member
-    '''
-    def getBalance(self):
-        return self.balance
-
-    '''
-        Get the distinct color of this member
-    '''
-    def getColor(self):
+    def get_color(self):
         return self.color
 
-    '''
-        Set the balance of this member
-    '''
-    def setBalance(self, newBalance):
-        self.balance = newBalance
+    def get_balance(self):
+        return self.balance
 
-    '''
-        Set the name of this member
-    '''
-    def setName(self,newName):
-        self.name = newName
+    def set_color(self, color):
+        """
+        Set the color of this member with a given color
 
-    '''
-        Set the color of this member
-    '''
-    def setColor(self, newColor):
-        self.color = newColor
+        Parameters
+        ----------
+        color : str
+            The new color set to this member
+        """
+        self.color = color
 
+    def set_balance(self, balance):
+        """
+        Set the balance of this member with a given balance
+
+        Parameters
+        ----------
+        balance : float
+            The new balance set to this member
+        """
+        self.balance = balance
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __hash__(self):
+        return self.name.__hash__()
