@@ -4,18 +4,20 @@ import './calendar.css';
 
 
 
-export const ReactCalendar = () => {
+export const ReactCalendar = (props) => {
     const [date, setDate] = useState(new Date());
   
     const onChange = date => {
       setDate(date)
     }
-  
-    const mark = [
+    
+    const mark = props.tripDate
+    /*
+    mark = [
       'Jul 15 2022',
       'Jul 16 2022',
       'Jul 17 2022'
-    ]
+    ] */
 
     const today = new Date()
   
@@ -36,30 +38,30 @@ export const ReactCalendar = () => {
               }
        
             }}
-            calendarType="US"
-            locale="en"
+          calendarType="US"
+          locale="en"
 
-            //access dates/events
-            onChange={onChange}
-            onClickDay={(day) => console.log('Date Clicked: ', day) } //click date and link to event
+          //access dates/events
+          onChange={onChange}
+          onClickDay={(day) => console.log('Date Clicked: ', day) } //click date and link to event
 
-            //remove navbar function (can't change to year-view ect)
-            minDetail="month"
-            maxDetail="month"
-            defaultView="month"
-            
-            
-            //limit month view
-            //maxDate={new Date(today.getFullYear, today.getMonth + 1, 1)}
-            //minDate={new Date(today.getFullYear, today.getMonth, 1)}
-            
-            //remove nav (function not removed)
-            prevLabel=''
-            prev2Label=''
-            nextLabel=''
-            next2Label=''
+          //remove navbar function (can't change to year-view ect)
+          minDetail="month"
+          maxDetail="month"
+          defaultView="month"
+          
+          
+          //limit month view
+          //maxDate={new Date(today.getFullYear, today.getMonth + 1, 1)}
+          //minDate={new Date(today.getFullYear, today.getMonth, 1)}
+          
+          //remove nav (function not removed)
+          prevLabel=''
+          prev2Label=''
+          nextLabel=''
+          next2Label=''
 
-            showNeighboringMonth={false}
+          showNeighboringMonth={false}
 
           />
       </div> 
