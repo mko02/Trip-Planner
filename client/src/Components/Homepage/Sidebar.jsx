@@ -14,7 +14,8 @@ function Sidebar() {
             'Jul 15 2022',
             'Jul 16 2022',
             'Jul 19 2022']
-        }/>
+          }
+          />
     </Box>
 
   )

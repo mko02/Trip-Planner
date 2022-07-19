@@ -1,14 +1,15 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
 .react-calendar { 
  width: 400px;
  max-width: 100%;
  background-color: #EEEEEE;
  color: black;
- border-radius: 8px;
- box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
- font-family: 'Roboto', sans-serif;;
+ border-top-right-radius: 0;
+ border-bottom-right-radius: 6px;
+ border-top-left-radius: 0;
+ border-bottom-left-radius: 6px;
+ font-family: 'Roboto', sans-serif;
  line-height: 1.125em;
 }
 
@@ -38,26 +39,6 @@
 }
 .react-calendar button:enabled:hover {
   cursor: pointer;
-}
-.react-calendar__navigation {
-  display: flex;
-  height: 44px;
-  margin-bottom: 1em;
-}
-.react-calendar__navigation button {
- color: black;
- min-width: 44px;
- background: none;
- font-size: 16px;
- margin-top: 8px;
- font-weight: 700;
-}
-.react-calendar__navigation button:disabled {
-  background-color: #EEEEEE;
-}
-.react-calendar__navigation button:enabled:hover,
-.react-calendar__navigation button:enabled:focus {
-  background-color: #EEEEEE;
 }
 .react-calendar__month-view__weekdays {
   text-align: center;
@@ -95,6 +76,8 @@ abbr[title] {
   background: none;
   text-align: center;
   line-height: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
 }
 .react-calendar__tile:disabled {
   background-color: #f0f0f0;
@@ -199,9 +182,9 @@ abbr[title] {
 */
 
 .center-block {
-    background: #f7c3c3;
-    color: black;
-    border-radius: 0;
+  background: #f7c3c3;
+  color: black;
+  border-radius: 0;
 }
 .first-block {
  border-top-right-radius: 0;
@@ -221,4 +204,18 @@ abbr[title] {
 
 .fc-today{
     background-color: #DBDBDB !important;
+}
+
+.monthTitle{
+  text-align: center;
+  font-weight: bold;
+  background-color: #EEEEEE;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 0;
+  padding-bottom: 20px;
+  padding-top: 15px;
+  margin-bottom: 0; 
+  font-family: 'Roboto', sans-serif;;
 }
