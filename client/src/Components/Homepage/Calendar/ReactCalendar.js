@@ -56,10 +56,11 @@ export const ReactCalendar = (props) => {
           //minDate={new Date(today.getFullYear, today.getMonth, 1)}
           
           //remove nav (function not removed)
+          
           prevLabel=''
           prev2Label=''
           nextLabel=''
-          next2Label=''
+          next2Label='' 
 
           showNeighboringMonth={false}
 
