@@ -112,7 +112,7 @@ class Trip:
         """
         return name in self.members.keys()
 
-    def add_event(self, title, year, month, date, hour, minute, label, location, description):
+    def add_event(self, title, start_time, end_time, label, location="", description=""):
         """
         Add a new event with given parameters
         If duplicate event exists in the trip, then no behavior is performed
@@ -120,17 +120,13 @@ class Trip:
         Parameters
         ----------
         title : str
-        year : int
-        month : int
-        date : int
-        hour : int
-        minute : int
-        label : str
+        start_time : datetime.datetime
+        end_time : datetime.datetime
         location : str
+        label : str
         description : str
         """
-        time = dt(year, month, date, hour, minute)
-        e = Event(title, time, label, location, description)
+        e = Event(title, start_time, end_time, location, label, description)
         if not self.contains_event(e.get_id()):
             self.events[e.get_id()] = e
 
