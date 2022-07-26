@@ -2,6 +2,7 @@ import React from 'react'
 import {Box} from '@mui/material'
 import { ReactCalendar } from "./Calendar/ReactCalendar"
 
+import {sample_trip} from "../DummyInfo/sample_trip"
 
 
 function Sidebar() {
@@ -10,11 +11,7 @@ function Sidebar() {
         Sidebar
          <ReactCalendar 
         //Dates to be highlighted
-            tripDate = {[
-            'Jul 15 2022',
-            'Jul 16 2022',
-            'Jul 19 2022']
-          }
+            tripDate = {sample_trip}
           />
     </Box>
 
