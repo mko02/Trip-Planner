@@ -20,8 +20,6 @@ export const ReactCalendar = (props) => {
       'Jul 17 2022'
     ] */
 
-    
-
     const today = new Date()
   
     return (
