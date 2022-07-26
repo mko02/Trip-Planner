@@ -9,7 +9,7 @@ import {sample_package_data} from '../../DummyInfo/sample_package_data'
 
 
 function Sidebar() {
-  const [events, setEvents] = useState(sample_package_data)
+  const [events] = useState(sample_package_data)
 
   return (
     <Box bgcolor="#EEEEEE" flex={0.5} padding={2}>
