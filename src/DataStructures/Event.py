@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import *
 
 class Event:
     """
@@ -12,34 +12,35 @@ class Event:
         The start time of this event
     end_time : datetime.datetime
         The end time of this event
-    label : str
-        The label of this event
     location : str
         The location of this event
+    label : tuple
+        A tuple of labels in this event
     description : str
         The description of this event
     """
-    def __init__(self, title, start_time, end_time, label, location, description):
+    def __init__(self, title, start_time, end_time, location, label=(), description=""):
         """
         Construct a new Event with given parameters
 
         Parameters
         ----------
         title : str
-        time : datetime.datetime
-        label : str
+        start_time : datetime.datetime
+        end_time : datetime.datetime
         location : str
+        label : tuple (str)
         description : str
         """
         self.title = title
         self.start_time = start_time
         self.end_time = end_time
-        self.label = label
         self.location = location
+        self.label = label
         self.description = description
 
     def get_id(self):
-        return self.title + self.start_time.strptime("%y, %m, %d, %H:%M")
+        return self.title + self.start_time.strftime("%Y, %M, %d, %H:%M")
 
     # Check representation exposure
     def get_start(self):

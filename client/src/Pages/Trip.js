@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {sample_trip} from "../DummyInfo/sample_trip"
+import EventList from "../Components/TripPage/EventList"
 
-function Trip() {
+function Trip(props) {
+  // props: the whole package
   return (
-    <div>Trip</div>
+    <div>
+      <div className={"title"}>{props.trip.title}</div>
+      <EventList events={props.trip.event}></EventList>
+    </div>
   )
 }
 

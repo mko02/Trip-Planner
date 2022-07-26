@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import './calendar.css';
@@ -11,18 +12,19 @@ export const ReactCalendar = (props) => {
       setDate(date)
     }
     
-    const mark = props.tripDate
-    /*
-    mark = [
+    const mark = [
       'Jul 15 2022',
       'Jul 16 2022',
       'Jul 17 2022'
-    ] */
+    ] 
+    //props.tripDate
 
     const today = new Date()
   
     return (
       <div>
+        <Typography class="monthTitle">{today.toLocaleString('default', { month: 'long', year: 'numeric'})}</Typography>
+
          <Calendar 
             tileClassName={({ date, view }) => {
               // date will return every date visible on calendar and view will view type (eg. month)
@@ -49,6 +51,7 @@ export const ReactCalendar = (props) => {
           minDetail="month"
           maxDetail="month"
           defaultView="month"
+          showNavigation={false}
           
           
           //limit month view
@@ -56,14 +59,15 @@ export const ReactCalendar = (props) => {
           //minDate={new Date(today.getFullYear, today.getMonth, 1)}
           
           //remove nav (function not removed)
+          
           prevLabel=''
           prev2Label=''
           nextLabel=''
-          next2Label=''
+          next2Label='' 
 
           showNeighboringMonth={false}
 
-          />
+        />
       </div> 
     );
   }

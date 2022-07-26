@@ -12,16 +12,7 @@ function Home() {
         <Sidebar/>
       </Stack>
     </Box>
-    // <><div>Home</div><div>
-    //   <ReactCalendar 
-    //     //Dates to be highlighted
-    //     tripDate = {[
-    //       'Jul 15 2022',
-    //       'Jul 16 2022',
-    //       'Jul 19 2022']
-    //     }
-    //   />
-    // </div></>
+    
   )
 }
 
