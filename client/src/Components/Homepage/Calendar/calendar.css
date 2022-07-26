@@ -5,11 +5,16 @@
  max-width: 100%;
  background-color: #EEEEEE;
  color: black;
+<<<<<<< Updated upstream:client/src/Components/Homepage/Calendar/calendar.css
  border-top-right-radius: 0;
  border-bottom-right-radius: 6px;
  border-top-left-radius: 0;
  border-bottom-left-radius: 6px;
  font-family: 'Roboto', sans-serif;
+=======
+ border-radius: 8px;
+ font-family: 'Roboto', sans-serif;;
+>>>>>>> Stashed changes:client/src/Components/Calendar/calendar.css
  line-height: 1.125em;
 }
 
