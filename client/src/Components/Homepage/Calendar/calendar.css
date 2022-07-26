@@ -49,7 +49,9 @@
   padding: 0.5em;
 }
 abbr[title] {
- text-decoration: none;
+  border-bottom: none !important;
+  cursor: inherit !important;
+  text-decoration: none !important;
 }
 .react-calendar__month-view__weekNumbers .react-calendar__tile {
   display: flex;
@@ -77,6 +79,7 @@ abbr[title] {
   line-height: 16px;
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
+  font-weight: 300;
 }
 .react-calendar__tile:disabled {
   background-color: #f0f0f0;
@@ -203,10 +206,11 @@ abbr[title] {
 
 .fc-today{
     background-color: #DBDBDB !important;
+    font-weight: 300;
 }
 
 .monthTitle{
-  text-align: center;
+  text-align: left;
   font-weight: bold;
   background-color: #EEEEEE;
   border-top-right-radius: 6px;
@@ -214,7 +218,8 @@ abbr[title] {
   border-top-left-radius: 6px;
   border-bottom-left-radius: 0;
   padding-bottom: 20px;
-  padding-top: 15px;
+  padding-top: 30px;
+  padding-left: 15px;
   margin-bottom: 0; 
   font-family: 'Roboto', sans-serif;;
 }

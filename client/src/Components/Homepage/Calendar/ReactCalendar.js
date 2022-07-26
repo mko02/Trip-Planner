@@ -12,13 +12,12 @@ export const ReactCalendar = (props) => {
       setDate(date)
     }
     
-    const mark = props.tripDate
-    /*
-    mark = [
+    const mark = [
       'Jul 15 2022',
       'Jul 16 2022',
       'Jul 17 2022'
-    ] */
+    ] 
+    //props.tripDate
 
     const today = new Date()
   
