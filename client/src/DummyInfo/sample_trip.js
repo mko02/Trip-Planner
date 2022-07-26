@@ -1,14 +1,4 @@
-let trip : [event]
-let event : {
-    title: string,
-    location: string,
-    start_time: string, // In ISO format
-    end_time: string, // In ISO format
-    label: [string],
-    description: string
-}
-
-const sample_trip1 = [
+const sample_trip = [
     {
         title: "Museum of Pop Culture",
         location: "325 5th Ave N, Seattle, WA 98109, United States",
@@ -106,3 +96,5 @@ const sample_trip1 = [
         description: "Flight time: 16:00"
     }
 ]
+
+export {sample_trip}
