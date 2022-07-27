@@ -12,7 +12,7 @@ function Sidebar() {
   const [events] = useState(sample_package_data)
 
   return (
-    <Box bgcolor="#EEEEEE" flex={0.5} padding={2}>
+    <Box bgcolor="#EEEEEE" flex={1} padding={2}>
         
         <ReactCalendar tripDate = {sample_trip} />
 
