@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 3fr 5fr;
     font-family: 'Roboto', sans-serif;
-    height: 5cm;
+    height: 4cm;
     margin-bottom: 30px;
     margin-left: 30px;
     margin-right: 20px;
@@ -13,14 +13,14 @@
     border-radius: 6px;
     text-align: center;
     margin: auto;
-    padding: 80px 0;
+    padding: 60px 0;
 }
 .trip_title_time{
     padding: 10px 0;
 }
 .trip_title{
     padding-left: 20px;
-    padding-top: 50px;
+    padding-top: 30px;
     font-weight: 900;
 }
 .trip_time_span{

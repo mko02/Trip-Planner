@@ -5,10 +5,10 @@
     grid-template-columns: 3fr 1fr;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    font-size: 12px;
 }
 .time{
     position: relative;
-    right: 15px;
 }
 .title{
     display: grid;
@@ -19,4 +19,5 @@
     background-color: #d3d3d3;
     width: 75%;
     text-align: center;
+    height: 100%;
 }
