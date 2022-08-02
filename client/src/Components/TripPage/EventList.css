@@ -1,0 +1,52 @@
+.event {
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    background-color: #EEEEEE;
+    border-radius: 6px;
+}
+
+.event-list {
+    display: grid;
+    grid-row-gap: 10px;
+    grid-auto-rows: auto;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    margin-right: 20px;
+    border-radius: 6px
+}
+
+.time-title {
+    border-radius: 6px;
+    text-align: center;
+    align-content: center;
+}
+
+.date-title {
+    font-size: 60px;
+    margin-top: 40px
+}
+
+.month-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.event-title {
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.start-time-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 18px;
+    font-weight: 300
+}
+
+.event-info {
+    margin-left: 20px
+}

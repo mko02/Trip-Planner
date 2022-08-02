@@ -1,13 +1,54 @@
 import React, { useState } from 'react'
-import {sample_trip} from "../DummyInfo/sample_trip"
+import { Stack, IconButton, Button } from '@mui/material';
 import EventList from "../Components/TripPage/EventList"
+import Member from "../Components/TripPage/Member"
+import {Add} from "@mui/icons-material"
+import {sample_package_data} from "../DummyInfo/sample_package_data"
 
 function Trip(props) {
-  // props: the whole package
+  // props.title -> the title of the trip
+  // retrieve data from the backend
+  let trip = sample_package_data[props.title]
+  const header_style = {
+      fontSize: "60px",
+      alignContent: "center",
+      display: "flex"
+  }
+
+
+  const transaction_sheet_style = {
+      backgroundColor: "#EEEEEE",
+      color: "black",
+      fontFamily: 'Roboto',
+      fontWeight: "300",
+      fontSize: "30px",
+      paddingTop: "50px",
+      paddingBottom: "50px",
+      marginTop: "100px",
+  }
+
   return (
     <div>
-      <div className={"title"}>{props.trip.title}</div>
-      <EventList events={props.trip.event}></EventList>
+      <Stack direction={"row"} sx={{
+          display: "grid",
+          gap: "10",
+          gridTemplateColumns: "8fr 2fr",
+          margin: "30px"
+      }}>
+          <Stack sx={{
+              margin: "30px"
+          }}>
+              <div className={"header"} style={header_style}>
+                  <div className={"title"}>{trip.title}</div>
+                  <IconButton sx={{float: "right"}}><Add/></IconButton>
+              </div>
+              <EventList events={trip.event}></EventList>
+          </Stack>
+          <Stack className={"sidebar"} spacing={"100px"}>
+              <Button sx={transaction_sheet_style}>Transaction Sheet</Button>
+              <Member members={trip.member}></Member>
+          </Stack>
+      </Stack>
     </div>
   )
 }
