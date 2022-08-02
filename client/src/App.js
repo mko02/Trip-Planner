@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home/>}/> 
-        <Route path="/currenttrip" element={<Trip trip={sample_package_data[0]}/>}/>
+        <Route path="/currenttrip" element={<Trip title={0}/>}/>
         <Route path="/transactionsheet" element={<TransactionSheet />}/>
       </Routes>
     </div>
