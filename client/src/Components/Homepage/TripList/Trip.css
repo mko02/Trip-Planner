@@ -9,6 +9,9 @@
     background-color: #EEEEEE;
     border-radius: 6px;
 }
+.trip:hover{
+    cursor: pointer;
+}
 .pic{
     border-radius: 6px;
     text-align: center;
@@ -30,4 +33,9 @@
 }
 .button{
     float: right;
+    width: 35px;
+    height: 35px;
+}
+.dropdown:hover{
+    
 }
