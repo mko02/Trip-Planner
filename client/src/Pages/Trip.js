@@ -12,11 +12,9 @@ function Trip(props) {
   const header_style = {
       fontSize: "60px",
       alignContent: "center",
-      display: "flex",
       margin: "30px",
       marginTop: "0px"
   }
-
 
   const transaction_sheet_style = {
       backgroundColor: "#EEEEEE",
