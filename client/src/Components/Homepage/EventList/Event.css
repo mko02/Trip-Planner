@@ -1,23 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap');
 
-.events{
+.events_home{
     display: grid;
     grid-template-columns: 3fr 1fr;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-size: 12px;
 }
-.time{
+.time_home{
     position: relative;
+    font-weight: 300;
+    font-size: 12px;
 }
-.title{
+.title_home{
     display: grid;
     grid-template-columns: 1fr 8fr;
     gap: 1px;
+    font-weight: 300;
+    font-size: 12px;
 }
-.index{
+.index_home{
     background-color: #d3d3d3;
     width: 75%;
     text-align: center;
     height: 100%;
+    font-weight: 300;
+    font-size: 12px;
+}
+.event-title_home{
+    font-weight: 300;
+    font-size: 12px;
 }

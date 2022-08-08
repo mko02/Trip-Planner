@@ -1,5 +1,5 @@
 import React from 'react';
-import './Event.css';
+import './Event.css'
 
 export default function Event({ event, index }) {
     const month ={
@@ -24,17 +24,16 @@ export default function Event({ event, index }) {
 
 
     return (
-        <div className='events'>
-            <div className='title'>
-                <div className='index'>
+        <div className='events_home'>
+            <div className='title_home'>
+                <div className='index_home'>
                     {index}
                 </div>
-                <div>
+                <div className='event-title_home'>
                     {event.title}
                 </div>
-                
             </div>
-            <div className='time'>
+            <div className='time_home'>
                 {`${start_month} ${start_day}, ${start_time}`}
             </div>
         </div>
