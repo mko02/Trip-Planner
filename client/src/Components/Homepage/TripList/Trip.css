@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
+
 .trip{
     display: grid;
-    grid-template-columns: 3fr 5fr;
+    grid-template-columns: 3fr 3fr 2fr;
     font-family: 'Roboto', sans-serif;
     height: 4cm;
     margin-bottom: 30px;
     margin-left: 30px;
     margin-right: 20px;
-    background-color: #EEEEEE;
     border-radius: 6px;
 }
 .trip:hover{
@@ -20,6 +21,7 @@
 }
 .trip_title_time{
     padding: 10px 0;
+    background-color: #EEEEEE;
 }
 .trip_title{
     padding-left: 20px;
@@ -31,11 +33,30 @@
     padding-top: 20px;
     font-weight: 300;
 }
+/*
 .button{
     float: right;
     width: 35px;
     height: 35px;
+} */
+.dropdown{
+    background-color: #EEEEEE;
 }
-.dropdown:hover{
-    
+.threeDots{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
+.dropDownMenu{
+    padding-top: 2.5rem;
+    padding-right: 0.5rem;
+}
+
+.dropDownItems{
+    font-size: 15px;
+    font-weight: 500;
+    opacity: 50%;
+    font-family: 'Roboto', sans-serif;
+    text-align: right;
+}
+

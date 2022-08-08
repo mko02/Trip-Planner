@@ -23,3 +23,9 @@
     margin-left: 10px;
     background-color: #EEEEEE;
 }
+.title {
+    margin-left: 10px;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
