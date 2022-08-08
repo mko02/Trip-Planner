@@ -31,8 +31,8 @@ function Member(props) {
     }
     return (
         <div>
-            <div>
-                <h1>Members</h1>
+            <div className='title'>
+                Members
             </div>
             <div className={"member-list"}>
                 {member_list}

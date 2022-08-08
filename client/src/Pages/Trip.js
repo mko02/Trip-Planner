@@ -12,7 +12,9 @@ function Trip(props) {
   const header_style = {
       fontSize: "60px",
       alignContent: "center",
-      display: "flex"
+      display: "flex",
+      margin: "30px",
+      marginTop: "0px"
   }
 
 
@@ -39,8 +41,10 @@ function Trip(props) {
               margin: "30px"
           }}>
               <div className={"header"} style={header_style}>
-                  <div className={"title"}>{trip.title}</div>
-                  <IconButton sx={{float: "right"}}><Add/></IconButton>
+                  <div>{trip.title}</div>
+                  <div style={{marginLeft:"auto", marginRight:0}}>
+                    <IconButton><Add/></IconButton>
+                  </div>
               </div>
               <EventList events={trip.event}></EventList>
           </Stack>
