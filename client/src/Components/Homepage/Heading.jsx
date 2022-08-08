@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import BasicModal from "./Modal/BasicModal";
+import NewTripModal from "./Modal/NewTripModal";
 
 import { Box, Stack, Typography, Button, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -29,7 +29,7 @@ function Heading() {
           <AddIcon></AddIcon>
         </IconButton>
       </Stack>
-      <BasicModal open={open} onClose={modalClose} />
+      <NewTripModal open={open} onClose={modalClose} />
     </Box>
   );
 }
