@@ -14,7 +14,10 @@ function Trip(props) {
       fontSize: "60px",
       alignContent: "center",
       margin: "30px",
-      marginTop: "0px"
+      marginTop: "0px",
+      display: "grid",
+      gridTemplateColumns: "5fr 1fr",
+  
   }
 
   const transaction_sheet_style = {
