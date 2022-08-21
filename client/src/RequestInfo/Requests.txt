@@ -1,0 +1,23 @@
+Request Types:
+
+[GET]
+
+/get_trip_list
+
+/get_event_list?title="trip-title"
+
+/get_member_list?title="trip-title"
+
+/get_transaction_sheet?title="trip-title"
+
+/get_balance_sheet?title="trip-title"
+
+[POST]
+
+/update_event?title="trip-title"
+
+/add_member?title="trip-title"
+
+/delete_member?title="trip-title"
+
+/add_cost?title="trip-title"
