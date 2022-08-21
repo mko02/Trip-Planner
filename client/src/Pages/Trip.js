@@ -48,7 +48,7 @@ function Trip(props) {
               </div>
               <EventList events={trip.event}></EventList>
           </Stack>
-          <Stack className={"sidebar"} spacing={"100px"}>
+          <Stack className={"sidebar"}>
               <Button sx={transaction_sheet_style}>Transaction Sheet</Button>
               <MemberList members={trip.member} />
           </Stack>

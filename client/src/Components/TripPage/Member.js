@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {IconButton, Button, Box} from '@mui/material'
 import { Delete } from '@mui/icons-material'
 import styled from "styled-components";
-import TodoList from './Members/TodoList'
+import TodoList from './Members/MemberList'
 
 
 import './Member.css'

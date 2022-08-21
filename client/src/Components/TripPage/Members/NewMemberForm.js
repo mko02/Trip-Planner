@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Stack } from '@mui/material';
+import { Stack, Button } from '@mui/material';
+import styled from "styled-components"
 
 
 function NewMemberForm(props) {
@@ -26,22 +27,29 @@ const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
     return (
     <form onSubmit={handleSubmit} className='todo-form'>
-        <Stack direction="row">
-            <input
-                placeholder='Add a todo'
+        <Formdiv>
+            <NewMemberInput
+                placeholder='Add a Member'
                 value={input}
                 onChange={handleChange}
                 name='text'
                 className='todo-input'
                 ref={inputRef}
             />
-            <button onClick={handleSubmit} className='todo-button'>
-            Add 
-                </button>
-        </Stack>
+            <Button onClick={handleSubmit} className='todo-button'> Add </Button>
+        </Formdiv>
         
     </form>
     );
     }
 
 export default NewMemberForm;
+
+const NewMemberInput = styled.input`
+    border-radius: 5px;
+    border-width: 0.25px;
+    padding:8px;
+`
+const Formdiv = styled.div`
+flex-direction: row;
+`

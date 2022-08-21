@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NewMemberForm from './NewMemberForm';
 import Member from './Member';
+import styled from "styled-components"
 
 function MemberList(props) {
     const { members } = props
@@ -26,14 +27,18 @@ function MemberList(props) {
 
 
     return (
-    <>
+    <AddMemberdiv>
         <NewMemberForm onSubmit={addmen} />
         <Member
         members={listmembers}
         removemem={removemem}
         />
-    </>
+    </AddMemberdiv>
     );
     }
 
 export default MemberList;
+
+const AddMemberdiv = styled.div`
+margin-top: 40%;
+`
