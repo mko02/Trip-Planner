@@ -3,7 +3,8 @@ import { Stack, IconButton, Button } from '@mui/material';
 import EventList from "../Components/TripPage/EventList"
 import Member from "../Components/TripPage/Member"
 import {Add} from "@mui/icons-material"
-import {sample_package_data} from "../DummyInfo/sample_package_data"
+import { sample_package_data } from "../DummyInfo/sample_package_data"
+import TodoList from '../Components/TripPage/Members/TodoList'
 
 function Trip(props) {
   // props.title -> the title of the trip
@@ -16,7 +17,6 @@ function Trip(props) {
       margin: "30px",
       marginTop: "0px"
   }
-
 
   const transaction_sheet_style = {
       backgroundColor: "#EEEEEE",
@@ -51,6 +51,7 @@ function Trip(props) {
           <Stack className={"sidebar"} spacing={"100px"}>
               <Button sx={transaction_sheet_style}>Transaction Sheet</Button>
               <Member members={trip.member}></Member>
+              <TodoList members={trip.member} />
           </Stack>
       </Stack>
     </div>
