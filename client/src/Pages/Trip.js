@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Stack, IconButton, Button } from '@mui/material';
 import EventList from "../Components/TripPage/EventList"
-import Member from "../Components/TripPage/Member"
 import {Add} from "@mui/icons-material"
 import { sample_package_data } from "../DummyInfo/sample_package_data"
-import TodoList from '../Components/TripPage/Members/TodoList'
+import Member from "../Components/TripPage/Members/Member"
+import MemberList from '../Components/TripPage/Members/MemberList'
 
 function Trip(props) {
   // props.title -> the title of the trip
@@ -50,8 +50,7 @@ function Trip(props) {
           </Stack>
           <Stack className={"sidebar"} spacing={"100px"}>
               <Button sx={transaction_sheet_style}>Transaction Sheet</Button>
-              <Member members={trip.member}></Member>
-              <TodoList members={trip.member} />
+              <MemberList members={trip.member} />
           </Stack>
       </Stack>
     </div>

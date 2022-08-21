@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import TodoForm from './TodoForm';
-import Todo from './Todo';
+import NewMemberForm from './NewMemberForm';
+import Member from './Member';
 
-function TodoList(props) {
+function MemberList(props) {
     const { members } = props
     const [listmembers, setlistmembers] = useState(members);
     console.log('listmembers',listmembers)
@@ -18,22 +18,22 @@ function TodoList(props) {
         console.log('currentlistmembers', listmembers);
     };
 
-    // const removemem = id => {
-    // const removedArr = [...members].filter(todo => todo.id !== id);
-
-    // setlistmembers(removedArr);
-    // };
+    const removemem = name => {
+        const removedArr = [...listmembers].filter(member => member.name !== name);
+        setlistmembers(removedArr);
+        console.log('tried to remove')
+    };
 
 
     return (
     <>
-        <TodoForm onSubmit={addmen} />
-        <Todo
-        members={members}
-        // removeTodo={removeTodo}
+        <NewMemberForm onSubmit={addmen} />
+        <Member
+        members={listmembers}
+        removemem={removemem}
         />
     </>
     );
     }
 
-export default TodoList;
+export default MemberList;

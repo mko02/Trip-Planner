@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Stack } from '@mui/material';
 
-function TodoForm(props) {
+
+function NewMemberForm(props) {
 const [input, setInput] = useState(props.edit ? props.edit.value : '');
     const inputRef = useRef(null);
 
@@ -17,7 +19,6 @@ const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
         props.onSubmit({
             name: input,
-            id: input,
             color: 'black'
         })
         setInput('');
@@ -25,19 +26,22 @@ const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
     return (
     <form onSubmit={handleSubmit} className='todo-form'>
-        <input
-            placeholder='Add a todo'
-            value={input}
-            onChange={handleChange}
-            name='text'
-            className='todo-input'
-            ref={inputRef}
-        />
-        <button onClick={handleSubmit} className='todo-button'>
-        Add 
-        </button>
+        <Stack direction="row">
+            <input
+                placeholder='Add a todo'
+                value={input}
+                onChange={handleChange}
+                name='text'
+                className='todo-input'
+                ref={inputRef}
+            />
+            <button onClick={handleSubmit} className='todo-button'>
+            Add 
+                </button>
+        </Stack>
+        
     </form>
     );
     }
 
-    export default TodoForm;
+export default NewMemberForm;
