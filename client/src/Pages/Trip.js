@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Stack, IconButton, Button } from '@mui/material';
 import EventList from "../Components/TripPage/EventList"
-import Member from "../Components/TripPage/Member"
 import {Add} from "@mui/icons-material"
-import {sample_package_data} from "../DummyInfo/sample_package_data"
+import { sample_package_data } from "../DummyInfo/sample_package_data"
+import Member from "../Components/TripPage/Members/Member"
+import MemberList from '../Components/TripPage/Members/MemberList'
 
 function Trip(props) {
   // props.title -> the title of the trip
@@ -46,9 +47,9 @@ function Trip(props) {
               </div>
               <EventList events={trip.event}></EventList>
           </Stack>
-          <Stack className={"sidebar"} spacing={"100px"}>
+          <Stack className={"sidebar"}>
               <Button sx={transaction_sheet_style}>Transaction Sheet</Button>
-              <Member members={trip.member}></Member>
+              <MemberList members={trip.member} />
           </Stack>
       </Stack>
     </div>
