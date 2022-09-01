@@ -22,14 +22,14 @@ function NewEventModal({ open, onClose }) {
         <TextField
           placeholder="New Event Name"
           name="NewEventName"
-          label="NewEventName"
+          label="New Event Name"
         />
         <DateTimePicker label="Start Date" />
         <DateTimePicker label="End Date" />
         <TextField
           placeholder="Description this is my description"
           name="EventDescription"
-          label="EventDescription"
+          label="Event Description"
           multiline
           rows={4}
           type="text"
